@@ -43,20 +43,20 @@
   },
   "devDependencies": {
     "async": "^3.2.0",
-    "eslint": "^7.18.0",
+    "eslint": "^7.21.0",
     "eslint-config-semistandard": "^15.0.1",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-standard": "^5.0.0",
     "install": "^0.13.0",
-    "mocha": "^8.2.1",
+    "mocha": "^8.3.0",
     "node-gyp": "^7.1.2",
     "prettier": "^2.2.1",
     "should": "~13.2.3",
     "sinon": "~9.2.4",
-    "ws": "^7.4.2"
+    "ws": "^7.4.3"
   },
   "scripts": {
     "lint": "eslint \"**/*.js\"",
