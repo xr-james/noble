@@ -8,6 +8,11 @@
             'lib/mac/binding.gyp:binding',
           ],
         }],
+        ['OS=="win"', {
+          'dependencies': [
+            'lib/winrt/binding.gyp:noble_winrt',
+          ],
+        }],
       ],
     },
   ],

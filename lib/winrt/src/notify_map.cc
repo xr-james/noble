@@ -23,6 +23,7 @@ void NotifyMap::Add(std::string uuid, GattCharacteristic characteristic, winrt::
 {
     Key key = { uuid, characteristic.Service().Uuid(), characteristic.Uuid() };
     mNotifyMap.insert(std::make_pair(key, token));
+    mCharacteristicMap.insert(std::make_pair(key, characteristic));
 }
 
 bool NotifyMap::IsSubscribed(std::string uuid, GattCharacteristic characteristic)
@@ -49,6 +50,7 @@ void NotifyMap::Unsubscribe(std::string uuid, GattCharacteristic characteristic)
     auto& token = it->second;
     characteristic.ValueChanged(token);
     mNotifyMap.erase(key);
+    mCharacteristicMap.erase(key);
 }
 
 void NotifyMap::Remove(std::string uuid)
@@ -59,6 +61,19 @@ void NotifyMap::Remove(std::string uuid)
         if (key.uuid == uuid)
         {
             it = mNotifyMap.erase(it);
+        }
+        else
+        {
+            it++;
+        }
+    }
+
+    for (auto it = mCharacteristicMap.begin(); it != mCharacteristicMap.end();)
+    {
+        auto& key = it->first;
+        if (key.uuid == uuid)
+        {
+            it = mCharacteristicMap.erase(it);
         }
         else
         {

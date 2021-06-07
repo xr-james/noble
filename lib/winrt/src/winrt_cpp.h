@@ -11,3 +11,4 @@ std::string formatBluetoothAddress(unsigned long long BluetoothAddress);
 std::string formatBluetoothUuid(unsigned long long BluetoothAddress);
 std::string toStr(winrt::guid uuid);
 std::vector<std::string> toPropertyArray(GattCharacteristicProperties& properties);
+void print_guid(winrt::guid guid);

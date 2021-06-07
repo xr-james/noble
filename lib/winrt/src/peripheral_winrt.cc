@@ -81,6 +81,7 @@ void PeripheralWinrt::Disconnect()
     if (device.has_value() && connectionToken)
     {
         device->ConnectionStatusChanged(connectionToken);
+        device->Close();
     }
     device = std::nullopt;
 }

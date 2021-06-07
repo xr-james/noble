@@ -48,15 +48,15 @@ private:
     void OnRadio(Radio& radio);
     void OnScanResult(BluetoothLEAdvertisementWatcher watcher, const BluetoothLEAdvertisementReceivedEventArgs& args);
     void OnScanStopped(BluetoothLEAdvertisementWatcher watcher, const BluetoothLEAdvertisementWatcherStoppedEventArgs& args);
-    void OnConnected(IAsyncOperation<BluetoothLEDevice> asyncOp, AsyncStatus& status, std::string uuid);
+    void OnConnected(IAsyncOperation<BluetoothLEDevice> asyncOp, AsyncStatus status, std::string uuid);
     void OnConnectionStatusChanged(BluetoothLEDevice device, winrt::Windows::Foundation::IInspectable inspectable);
     void OnServicesDiscovered(IAsyncOperation<GattDeviceServicesResult> asyncOp, AsyncStatus status, std::string uuid, std::vector<winrt::guid> serviceUUIDs);
     void OnIncludedServicesDiscovered(IAsyncOperation<GattDeviceServicesResult> asyncOp, AsyncStatus status, std::string uuid, std::string serviceId, std::vector<winrt::guid> serviceUUIDs);
     void OnCharacteristicsDiscovered(IAsyncOperation<GattCharacteristicsResult> asyncOp, AsyncStatus status, std::string uuid, std::string serviceId, std::vector<winrt::guid> characteristicUUIDs);
     void OnRead(IAsyncOperation<GattReadResult> asyncOp, AsyncStatus status, std::string uuid, std::string serviceId, std::string characteristicId);
     void OnWrite(IAsyncOperation<GattWriteResult> asyncOp, AsyncStatus status, std::string uuid, std::string serviceId, std::string characteristicId);
-    void OnNotify(IAsyncOperation<GattWriteResult> asyncOp, AsyncStatus status,  GattCharacteristic characteristic, std::string uuid, std::string serviceId, std::string characteristicId, bool state);
-    void OnValueChanged(GattCharacteristic chracteristic, const GattValueChangedEventArgs& args, std::string uuid);
+    void OnNotify(IAsyncOperation<GattWriteResult> asyncOp, AsyncStatus status, GattCharacteristic characteristic, std::string uuid, std::string serviceId, std::string characteristicId, bool state);
+    void OnValueChanged(GattCharacteristic characteristic, GattValueChangedEventArgs args, std::string deviceUuid);
     void OnDescriptorsDiscovered(IAsyncOperation<GattDescriptorsResult> asyncOp, AsyncStatus status, std::string uuid, std::string serviceId, std::string characteristicId);
     void OnReadValue(IAsyncOperation<GattReadResult> asyncOp, AsyncStatus status, std::string uuid, std::string serviceId, std::string characteristicId, std::string descriptorId);
     void OnWriteValue(IAsyncOperation<GattWriteResult> asyncOp, AsyncStatus status, std::string uuid, std::string serviceId, std::string characteristicId, std::string descriptorId);

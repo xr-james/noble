@@ -46,4 +46,5 @@ public:
 
 private:
     std::unordered_map<Key, winrt::event_token> mNotifyMap;
+    std::unordered_map<Key, GattCharacteristic> mCharacteristicMap;
 };
