@@ -1,3 +1,6 @@
+## Version 2.0.0
+* modify by @kuyoonjo/noble-winrt & @abandonware/noble
+
 ## Version 1.9.1
 
  * Don't forget previously discovered services and characteristics ([@elafargue](https://github.com/elafargue))

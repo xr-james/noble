@@ -7,17 +7,26 @@
   "license": "MIT",
   "name": "@cmsn/noble",
   "description": "A Node.js BLE (Bluetooth Low Energy) central library.",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Yongle-Fu/noble"
+    "url": "https://github.com/Yongle-Fu/noble.git"
+  },
+  "binary": {
+    "module_name": "noble",
+    "module_path": "./build/Release",
+    "host": "https://github.com/Yongle-Fu/noble/releases/download/",
+    "remote_path": "v{version}"
   },
   "keywords": [
     "bluetooth",
     "BLE",
     "bluetooth low energy",
     "bluetooth smart",
-    "central"
+    "central",
+    "winrt ble",
+    "node-ble",
+    "noble"
   ],
   "main": "./index.js",
   "types": "./index.d.ts",
@@ -58,7 +67,13 @@
     "@abandonware/bluetooth-hci-socket": "^0.5.3-7"
   },
   "scripts": {
-    "install": "node-gyp build",
+    "build": "node-gyp build",
+    "clean-prebuilt": "node-pre-gyp clean",
+    "package-prebuilt": "node-pre-gyp package",
+    "publish-prebuilt": "node-pre-gyp-github publish",
+    "publish-all-prebuilt": "node scripts/publish-all-prebuilt.js",
+    "fetch-prebuilt": "node-pre-gyp install --fallback-to-build=false",
+    "install": "npm run fetch-prebuilt || npm run build",
     "lint": "eslint \"**/*.js\"",
     "lint-fix": "eslint \"**/*.js\" --fix",
     "test": "mocha -R spec test/*.js"
