@@ -74,7 +74,7 @@ function buildAndPublishAll(configs) {
         prev.then(() => cleanPrebuilt(config))
             .then(() => prebuild(config))
             .then(() => packagePrebuilt(config))
-            .then(() => publishPrebuilt(config))
+            // .then(() => publishPrebuilt(config))
     ), Promise.resolve());
 }
 
