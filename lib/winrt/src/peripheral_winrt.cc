@@ -24,10 +24,6 @@ PeripheralWinrt::PeripheralWinrt(uint64_t bluetoothAddress,
 
 PeripheralWinrt::~PeripheralWinrt()
 {
-    if (device.has_value() && connectionToken)
-    {
-        device->ConnectionStatusChanged(connectionToken);
-    }
 }
 
 void PeripheralWinrt::Update(const int rssiValue, const BluetoothLEAdvertisement& advertisment,
@@ -77,16 +73,20 @@ void PeripheralWinrt::Update(const int rssiValue, const BluetoothLEAdvertisement
 
 void PeripheralWinrt::Disconnect()
 {
+    printf("PeripheralWinrt::Disconnect\n");
     cachedServices.clear();
-    if (device.has_value() && connectionToken)
-    {
-        device->ConnectionStatusChanged(connectionToken);
-        device->Close();
-    }
-    device = std::nullopt;
+    mServices.clear();
+    mCharacteristics.clear();
+    mDescriptors.clear();
 
     if (session.has_value()) session->Close();
     session = std::nullopt;
+
+    if (device.has_value()) {
+        device->Close();
+        device = std::nullopt;
+        printf("PeripheralWinrt::Disconnect, Device closed\n");
+    }
 }
 
 void PeripheralWinrt::GetServiceFromDevice(
@@ -104,6 +104,7 @@ void PeripheralWinrt::GetServiceFromDevice(
                     {
                         const GattDeviceService& s = service.Current();
                         cachedServices.insert(std::make_pair(serviceUuid, CachedService(s)));
+                        mServices.push_back(s);
                         callback(s);
                     }
                     else
@@ -156,6 +157,7 @@ void PeripheralWinrt::GetCharacteristicFromService(
                     CachedService cachedService = cachedServices[serviceUuid];
                     GattCharacteristic c = characteristic.Current();
                     cachedService.characterisitics.insert(std::make_pair(c.Uuid(), CachedCharacteristic(c)));
+                    mCharacteristics.push_back(c);
                     callback(c);
                 }
                 else
@@ -225,6 +227,7 @@ void PeripheralWinrt::GetDescriptorFromCharacteristic(
                     CachedService& cachedService = cachedServices[serviceUuid];
                     CachedCharacteristic& c = cachedService.characterisitics[characteristicUuid];
                     c.descriptors.insert(std::make_pair(descriptorUuid, d));
+                    mDescriptors.push_back(d);
                     callback(d);
                 }
                 else

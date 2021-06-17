@@ -65,10 +65,10 @@ public:
                        winrt::guid descriptorUuid,
                        std::function<void(std::optional<GattDescriptor>)> callback);
 
-    int rssi;
-    uint64_t bluetoothAddress;
-    std::optional<BluetoothLEDevice> device;
-    std::optional<GattSession> session;
+    int rssi = 0;
+    uint64_t bluetoothAddress = 0;
+    std::optional<BluetoothLEDevice> device = std::nullopt;
+    std::optional<GattSession> session = std::nullopt;
     winrt::event_token connectionToken;
 
 private:
@@ -81,4 +81,9 @@ private:
     GetDescriptorFromCharacteristic(GattCharacteristic characteristic, winrt::guid descriptorUuid,
                                     std::function<void(std::optional<GattDescriptor>)> callback);
     std::unordered_map<winrt::guid, CachedService> cachedServices;
+
+    // avoid object freed
+    std::vector<GattDeviceService> mServices;
+    std::vector<GattCharacteristic> mCharacteristics;
+    std::vector<GattDescriptor> mDescriptors;
 };

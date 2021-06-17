@@ -60,6 +60,7 @@ void NotifyMap::Remove(std::string uuid)
         {
             auto& token = it->second;
             key.characteristic.ValueChanged(token);
+            // key.characteristic.WriteClientCharacteristicConfigurationDescriptorWithResultAsync(GattClientCharacteristicConfigurationDescriptorValue::None);
             it = mNotifyMap.erase(it);
         }
         else
