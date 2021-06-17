@@ -78,7 +78,7 @@ std::string getAddress(std::string uuid, AddressType* addressType) {
             }
         }
     }
-    return "";
+    return uuid;
 }
 
 std::vector<std::string> getServices(NSArray<CBService*>* services) {
