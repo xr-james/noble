@@ -75,6 +75,9 @@ void PeripheralWinrt::Disconnect()
 {
     printf("PeripheralWinrt::Disconnect\n");
     cachedServices.clear();
+    // for (auto service: mServices) {
+    //   service.Session().Close();
+    // }
     mServices.clear();
     mCharacteristics.clear();
     mDescriptors.clear();

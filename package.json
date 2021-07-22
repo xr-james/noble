@@ -7,7 +7,7 @@
   "license": "MIT",
   "name": "cmsn-noble",
   "description": "A Node.js BLE (Bluetooth Low Energy) central library.",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "repository": {
     "type": "git",
     "url": "https://github.com/Yongle-Fu/noble.git"
