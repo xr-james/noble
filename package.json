@@ -15,7 +15,7 @@
   "binary": {
     "module_name": "noble",
     "module_path": "./build/Release",
-    "host": "https://focus-resource.oss-cn-beijing.aliyuncs.com/universal/node-prebuild/noble/",
+    "host": "https://focus-resource.oss-cn-beijing.aliyuncs.com/universal/node-prebuild/{module_name}/",
     "remote_path": "v{version}"
   },
   "keywords": [

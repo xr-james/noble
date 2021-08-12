@@ -14,14 +14,14 @@ const os = require('os');
  */
 
 const BUILD_CONFIGS = [
-    // {
-    //     npm_config_runtime: 'node',
-    //     npm_config_target: '12.18.3',
-    // },
-    // {
-    //     npm_config_runtime: 'node',
-    //     npm_config_target: '14.16.0',
-    // },
+    {
+        npm_config_runtime: 'node',
+        npm_config_target: '12.18.3',
+    },
+    {
+        npm_config_runtime: 'node',
+        npm_config_target: '14.16.0',
+    },
     {
         npm_config_runtime: 'electron',
         npm_config_target: '7.3.3',
@@ -37,6 +37,11 @@ const BUILD_CONFIGS = [
         npm_config_target: '8.2.5',
         npm_config_disturl: 'https://electronjs.org/headers'
     },
+    // {
+    //     npm_config_runtime: 'electron',
+    //     npm_config_target: '13.1.9',
+    //     npm_config_disturl: 'https://electronjs.org/headers'
+    // },
 ];
 
 function runNpm(args, envVars) {
