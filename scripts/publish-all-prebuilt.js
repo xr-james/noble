@@ -5,6 +5,7 @@
 'use strict';
 
 const spawn = require('child_process').spawn;
+const os = require('os');
 
 /*
  * This script builds and publishes precompiled binaries for pc-ble-driver-js
@@ -24,6 +25,16 @@ const BUILD_CONFIGS = [
     {
         npm_config_runtime: 'electron',
         npm_config_target: '7.3.3',
+        npm_config_disturl: 'https://electronjs.org/headers'
+    },
+    {
+        npm_config_runtime: 'electron',
+        npm_config_target: '8.5.5',
+        npm_config_disturl: 'https://electronjs.org/headers'
+    },
+    {
+        npm_config_runtime: 'electron',
+        npm_config_target: '8.2.5',
         npm_config_disturl: 'https://electronjs.org/headers'
     },
 ];
@@ -56,7 +67,15 @@ function cleanPrebuilt(config) {
 
 function prebuild(config) {
     console.log(`Building ${JSON.stringify(config)}`);
-    return runNpm(['install'], config);
+    const platform = os.platform();
+    if (platform === 'win32') {
+        console.log(`prebuild win`);
+        return runNpm(['run', 'build-win'], config);
+    } else {
+        console.log(`prebuild...`);
+        return runNpm(['run', 'build'], config);
+    }
+    // return runNpm(['install'], config);
 }
 
 function packagePrebuilt(config) {
