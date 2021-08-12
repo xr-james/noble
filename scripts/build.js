@@ -8,11 +8,10 @@ const spawn = require('child_process').spawn;
 const os = require('os');
 
 const platform = os.platform();
+console.log(`prebuild for ${platform}`);
 if (platform === 'win32') {
-    console.log(`Building win`);
-    // runNpm(['run', 'build-win']);
+    //
 } else {
-    console.log(`Building...`);
     runNpm(['run', 'build']);
 }
 

@@ -14,14 +14,14 @@ const os = require('os');
  */
 
 const BUILD_CONFIGS = [
-    {
-        npm_config_runtime: 'node',
-        npm_config_target: '12.18.3',
-    },
-    {
-        npm_config_runtime: 'node',
-        npm_config_target: '14.16.0',
-    },
+    // {
+    //     npm_config_runtime: 'node',
+    //     npm_config_target: '12.18.3',
+    // },
+    // {
+    //     npm_config_runtime: 'node',
+    //     npm_config_target: '14.16.0',
+    // },
     {
         npm_config_runtime: 'electron',
         npm_config_target: '7.3.3',
@@ -66,16 +66,13 @@ function cleanPrebuilt(config) {
 }
 
 function prebuild(config) {
-    console.log(`Building ${JSON.stringify(config)}`);
     const platform = os.platform();
+    console.log(`prebuild for ${platform} \n${JSON.stringify(config)}`);
     if (platform === 'win32') {
-        console.log(`prebuild win`);
         return runNpm(['run', 'build-win'], config);
     } else {
-        console.log(`prebuild...`);
         return runNpm(['run', 'build'], config);
     }
-    // return runNpm(['install'], config);
 }
 
 function packagePrebuilt(config) {
@@ -83,10 +80,10 @@ function packagePrebuilt(config) {
     return runNpm(['run', 'package-prebuilt'], config);
 }
 
-function publishPrebuilt(config) {
-    console.log(`Publishing ${JSON.stringify(config)}`);
-    return runNpm(['run', 'publish-prebuilt'], config);
-}
+// function publishPrebuilt(config) {
+//     console.log(`Publishing ${JSON.stringify(config)}`);
+//     return runNpm(['run', 'publish-prebuilt'], config);
+// }
 
 function buildAndPublishAll(configs) {
     return configs.reduce((prev, config) => (
