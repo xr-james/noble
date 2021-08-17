@@ -7,7 +7,7 @@
   "license": "MIT",
   "name": "cmsn-noble",
   "description": "A Node.js BLE (Bluetooth Low Energy) central library.",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "repository": {
     "type": "git",
     "url": "https://github.com/Yongle-Fu/noble.git"
@@ -41,7 +41,7 @@
   ],
   "dependencies": {
     "bindings": "^1.5.0",
-    "debug": "^4.3.1",
+    "debug": "^4.3.2",
     "napi-thread-safe-callback": "0.0.6",
     "node-addon-api": "^3.2.1"
   },
@@ -68,15 +68,14 @@
     "ws": "^7.4.6"
   },
   "optionalDependencies": {
-    "@abandonware/bluetooth-hci-socket": "^0.5.3-7"
+    "cmsn-bluetooth-hci-socket": "^0.6.0"
   },
   "scripts": {
     "build": "node-gyp configure && node-gyp build",
     "build-win": "node-gyp build",
     "clean-prebuilt": "node-pre-gyp clean",
     "package-prebuilt": "node-pre-gyp package",
-    "publish-prebuilt": "node-pre-gyp-github publish",
-    "prebuild-all": "node scripts/publish-all-prebuilt.js",
+    "pack-all": "node scripts/pack-all.js",
     "fetch-prebuilt": "node-pre-gyp install --fallback-to-build=false",
     "install": "npm run fetch-prebuilt || node scripts/build.js",
     "lint": "eslint \"**/*.js\"",
